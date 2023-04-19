@@ -1,6 +1,6 @@
 import { initializeApp} from "firebase/app";
 import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider} from "firebase/auth"
-
+import {getFirestone, doc, getDoc, setDoc} from "firebase/firestone";
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAfr41g2wX4Abux3EPR9qstMv_RveGkCao",
@@ -23,3 +23,4 @@ const firebaseConfig = {
 
   export const auth = getAuth();
   export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+  export const db = getFirestore();
