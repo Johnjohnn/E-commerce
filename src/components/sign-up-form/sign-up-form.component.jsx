@@ -12,19 +12,35 @@ const defaultformFields = {
 
 const SignUpForm = () => {
     const [formFields, setFormfields] = useState(defaultformFields);
-    const {disaplayName,email, password, confirmPassword} = formFields;
-    console.log(formFields)
+    const {displayName,email, password, confirmPassword} = formFields;
+    console.log(formFields);
+    const handleSubmit = async(event) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+        alert("password does not match");
+        return;
+        }
+        try {
+            const response = await createAuthUserWithEmailAndPassword(email, password);
+            console.log(response)
+           }catch (error){
+            console.log(error,"user creation encountered an error" )
+   
+           }
+          
+    }
     const handleChange = (e) => {
     const {name, value} = e.target;
     setFormfields({...formFields, [name]: value})
+
     }
     
     return (
        <div>
         <h1>Sign up with your email and Password</h1>
-        <form action="" onSubmit={()=>{}}>
+        <form action="" onSubmit={handleSubmit}>
             <label htmlFor="">Display Name</label>
-            <input required type="text" name="displayName" onChange={handleChange} value={disaplayName}/>
+            <input required type="text" name="displayName" onChange={handleChange} value={displayName}/>
             <label htmlFor="">Email</label>
             <input required type="email" name="email" onChange={handleChange} value={email}/>
             <label htmlFor="">Password</label>
